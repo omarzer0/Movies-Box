@@ -114,7 +114,10 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         Intent intent = new Intent(MainActivity.this,MovieDescriptionActivity.class);
         intent.putExtra(RESULT_EXTRA,clickedResult);
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+        ActivityOptions options = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+        }
         startActivity(intent, options.toBundle());
     }
 
