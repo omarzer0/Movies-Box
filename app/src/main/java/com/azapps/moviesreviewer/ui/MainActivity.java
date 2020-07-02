@@ -38,7 +38,7 @@ import static com.azapps.moviesreviewer.repository.Constant.RESULT_EXTRA;
 public class MainActivity extends AppCompatActivity implements OnMovieClickListener {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private ImageView next, previous;
+    private ImageView previous;
 
     private List<Results> movieList;
     private MovieApi movieApi;
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler);
         progressBar = findViewById(R.id.progress_bar);
-        next = findViewById(R.id.next_btn);
         previous = findViewById(R.id.previous_btn);
         previous.setVisibility(View.GONE);
 
@@ -121,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
 
     public void next(View view) {
+        progressBar.setVisibility(View.VISIBLE);
         pageNumber ++;
         getResultsFromRetrofit(pageNumber);
         if (pageNumber != 1){
@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
 
     public void previous(View view) {
+        progressBar.setVisibility(View.VISIBLE);
         pageNumber --;
         getResultsFromRetrofit(pageNumber);
         if (pageNumber == 1){
